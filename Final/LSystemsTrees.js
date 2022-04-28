@@ -4,14 +4,12 @@
 //from http://paulbourke.net/fractals/lsys
 
 let treeSystems = function (index) {
-  let x,y,X,Y;
-  let angle = 0;
-  let iter;
-  let step;
-  let pos = 0;
-  let str;
-  let r,g,b;
-  let stack = [];
+  let treeX,treeY;
+  let treeAngle = 0;
+  let treePos = 0;
+  let treeString;
+  let treeR,treeG,treeB;
+  let treeStack = [];
 
   //axiom is the initial string 
   //some production rules will be used to rewrite / expand this axiom 
@@ -137,23 +135,23 @@ let treeSystems = function (index) {
         system= random(graphs);
         createCanvas(800,800);
         background(245, 240, 240,220);
-        x = system.X;
-        y = system.Y;
-        cAngle = -90;
-        s = system.axiom;
+        treeX = system.X;
+        treeY = system.Y;
+        treeAngle = -90;
+        let st = system.axiom;
         for(let i=0; i<system.iter; i++){
-          s = det_len(s);
+          st = det_len(st);
         }
-        str = s;
-        pos = 0;
+        treeString = st;
+        treePos = 0;
         drawTree();
         displayLetter(index);
   }
   //this function calls the turtle function that will generate the pattern
   function drawTree() {
-    while (pos <= str.length){
-      turtle(str[pos]);
-      pos++;
+    while (treePos <= treeString.length){
+      turtle(treeString[treePos]);
+      treePos++;
     }
   }
 
@@ -163,62 +161,60 @@ let treeSystems = function (index) {
 
   //this function is responsible for rewriting the axiom using the 
   //production rules and calculate the length of the rewritten string
-  function det_len(s){
-    srules = system.rules;
-    res = "";
-    for(let i=0;i<s.length;i++){
+  function det_len(sLen){
+    let sRules = system.rules;
+    let resultLen = "";
+    for(let i=0;i<sLen.length;i++){
       match_found = false;
-      for (let j=0; j<srules.length; j++){
-        if (srules[j][0] == s[i]){
-          res += srules[j][1];
+      for (let j=0; j<sRules.length; j++){
+        if (sRules[j][0] == sLen[i]){
+          resultLen += sRules[j][1];
           match_found = true;
           break;
         }
       }
       if (!match_found){
-        res += s[i];
+        resultLen += sLen[i];
       }
     }
-    return res;
+    return resultLen;
   }
 
   //this is the function that actually generates the pattern (like a turtle)
   function turtle(c){
 
     if(c == 'F' || c == 'G' || c=='A' || c=='C'){
-      let x1 = x + system.step*cos(radians(cAngle));
-      let y1 = y + system.step*sin(radians(cAngle));
+      let x1 = treeX + system.step*cos(radians(treeAngle));
+      let y1 = treeY + system.step*sin(radians(treeAngle));
       strokeWeight(random(0,5));
-      r = random(50, 200);
-      g = random(100, 255);
-      b = random(150, 200);
-      stroke(r,g,b);
-      line(x, y, x1, y1);
-      x = x1;
-      y = y1;
+      treeR = random(50, 200);
+      treeG = random(100, 255);
+      treeB = random(150, 200);
+      stroke(treeR,treeG,treeB);
+      line(treeX, treeY, x1, y1);
+      treeX = x1;
+      treeY = y1;
     }
     else if(c == "+"){
-      cAngle += system.angle;
+      treeAngle += system.angle;
     }
     else if(c == "-"){
-      cAngle -= system.angle;
+      treeAngle -= system.angle;
     }
     //A stach is used in this code to store the state of the turtle if the grammar has a '['
     //the variables associated with the stored state are popped when the grammar has a ']'
     else if(c == "["){
       push();
-      stack.push({x:x,y:y,angle:cAngle})
+      treeStack.push({treeX:treeX,treeY:treeY,angle:treeAngle})
     }
     else if(c == "]"){
-      temp=stack.pop();
-      x=temp.x;
-      y=temp.y;
-      cAngle=temp.angle;
+      let tempVariable=treeStack.pop();
+      treeX=tempVariable.treeX;
+      treeY=tempVariable.treeY;
+      treeAngle=tempVariable.angle;
     }
 
   }
+  
   sketch1Setup();
-  return () => {
-    remove();
-  }
 };
