@@ -6,18 +6,19 @@ let currentLevel = 1;
 // Switch to regulate the enable next level button
 let enableNextLevel = false;
 
-let checkResult;
-let hint;
-let hintCount = 1;
+// variables required for hint functionality
+let checkResult, hint, hintCount = 1;
 
+// an array to display multiple tile colors
 let tileColors = ['#001523','#002137','#002945','#003356','#00406C'];
-//let tileColors = ['#023047','#126782','#219EbC','#58B4D1','#73BFDC'];
 
+// variables used to store the winning and losing sound
 let winSound, loseSound;
 
 // Switch to maintain the game start state
 let isGameStarted = false;
 
+// function to create the tile setup
 function drawGrid(width, height) {
   var counter = 0;
   
@@ -29,10 +30,10 @@ function drawGrid(width, height) {
         rect(i, j, 100, 100);
         if(tileOpen[counter] == true)
         {
+          // snippet to display the letter on the tile after the tile is explored
           textSize(50);
           textAlign(CENTER,CENTER);
           fill('#ffffff');
-          //stroke('#FCE77D');
           strokeWeight(3);
           text(tileLetter[counter],i+50,j+50);
           noStroke();
@@ -101,6 +102,7 @@ function setStartScreen(){
     startButton.mouseClicked(setMainPage);
 }
 
+// To create the bubble background for the game
 function gameBackground () {
     // For the opacity of the background
     let shapeAlpha = 50; 
