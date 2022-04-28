@@ -185,6 +185,7 @@ function setMainPage() {
   switchButton.mouseClicked(changeLevel);
 }
 
+// function to display the hint text
 function onHintClicked() {
   hintCount--;
   checkResult = getHintText();
@@ -206,6 +207,7 @@ function displayHintText(text){
   hint.position(200, 670);
 }
 
+// disabled the draw function as it ain't required
 function draw() {
   noLoop(); 
 }

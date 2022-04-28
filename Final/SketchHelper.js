@@ -21,16 +21,17 @@ function getWordLetter(){
   fillTiles();
 }
 
-// Generate hint text associated with word in dictionary
+// function to get the hint related to the word from the dictionary
 function getHintText(){
   return dict.generateHint();
 }
 
+// function to check the correctness of the entered word, when player submits their response
 function onSubmit() {  
   let inputWord = letter1.value() + letter2.value() + letter3.value() + letter4.value() + letter5.value();
   
   if (word.toLowerCase() === inputWord.toLowerCase()) {
-    winSound.play();
+    winSound.play(); // play the winning sound if the words match
     displayHintText('That\'s Correct! Great Job!');
     switchButton.style('color', '#ffffff');
     switchButton.style('background-color', '#1E6091');
@@ -41,7 +42,7 @@ function onSubmit() {
     letter5.style('border', '3px solid #1E6091');
     enableNextLevel = true;
   } else {
-    loseSound.play();
+    loseSound.play(); // play the losing sound if the words DO NOT match
     displayHintText('Oops, words DO NOT match. Try Again!');
   }
 }
@@ -167,7 +168,7 @@ function displaySketch(){
   }
 }
 
-// Function to exit from sketch page to game main page
+// exit from sketch page to main game page
 function exitToMainPage(){
     exitButton.hide();
     setMainPage();
@@ -217,6 +218,7 @@ function displayLetter(tileIndex){
   }
 }
 
+// wrapper to create input text objects with designated styles
 function inputTexts (id, posX, posY) {
   let letterInput;
   letterInput = createInput();
@@ -230,6 +232,7 @@ function inputTexts (id, posX, posY) {
   return letterInput;
 }
 
+// wrapper to create input buttons objects with designated styles
 function inputButtons (text, posX, posY, width, height) {
   let button;
   button = createButton(text);
@@ -267,6 +270,8 @@ function changeLevel(){
     setup();
   }
 }
+
+// FUNCTIONS to display sketches on each tile 
 
 function showSketch1(){
   directedRandomShapes(0);
