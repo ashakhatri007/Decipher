@@ -2,7 +2,7 @@ let directedRandomShapes = function (index) {
   let y=0;
   let x=0;
   let angle=0;
-  //the shpaes are mapped to integers and stored in an array
+  //the shapes are mapped to integers and stored in an array
   let values=[0,1,2,3,4,5]
   let i=0;
 
