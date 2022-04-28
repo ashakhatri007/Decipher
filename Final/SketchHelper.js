@@ -6,21 +6,24 @@ let letterIndex = -1;
 let tileOpen = [];
 let randomTileIndexes = [];
 
-
+// function to get a random word from the dictionary
 function getWordLetter(){
   word = dict.generateWord();
   console.log("Word is -- "+word); 
   fillTiles();
 }
+
+// function to get the hint related to the word from the dictionary
 function getHintText(){
   return dict.generateHint();
 }
 
+// function to check the correctness of the entered word, when player submits their response
 function onSubmit() {  
   let inputWord = letter1.value() + letter2.value() + letter3.value() + letter4.value() + letter5.value();
   
   if (word.toLowerCase() === inputWord.toLowerCase()) {
-    winSound.play();
+    winSound.play(); // play the winning sound if the words match
     displayHintText('That\'s Correct! Great Job!');
     switchButton.style('color', '#ffffff');
     switchButton.style('background-color', '#1E6091');
@@ -31,11 +34,12 @@ function onSubmit() {
     letter5.style('border', '3px solid #1E6091');
     enableNextLevel = true;
   } else {
-    loseSound.play();
+    loseSound.play(); // play the losing sound if the words DO NOT match
     displayHintText('Oops, words DO NOT match. Try Again!');
   }
 }
 
+// keep the color of the input boxes as red, when entered word is NOT correct
 function changeLetterBoxColorToRed(){
     letter1.style('border', '3px solid #A0001C');
     letter2.style('border', '3px solid #A0001C');
@@ -44,6 +48,7 @@ function changeLetterBoxColorToRed(){
     letter5.style('border', '3px solid #A0001C');
 }
 
+// function to fill in the tiles with the letters from the 5-letter word, randomly
 function fillTiles(){
   for(let i=0;i<25;i++){
     tileLetter[i] = '';
@@ -63,7 +68,7 @@ function fillTiles(){
   console.log(n1+" "+n2+" "+n3+" "+n4+" "+n5);
 }
 // Adapted from https://mavtipi.medium.com/how-to-generate-unique-random-numbers-in-a-specified-range-in-javascript-80bf1a545ae7
-
+// function to get 5 random tile indices randomly
 function getRandomIndexes(quantity,max){
    while(randomTileIndexes.length < quantity){
     var candidateInt = Math.floor(Math.random() * max) + 1
@@ -148,11 +153,14 @@ function displaySketch(){
     showSketch25();
   }
 }
+
+// exit from sketch page to main game page
 function exitToMainPage(){
     exitButton.hide();
     setMainPage();
 }
 
+//
 function displayLetter(tileIndex){
   if(tileOpen[tileIndex] == false){
     tileOpen[tileIndex] = true;
@@ -186,6 +194,7 @@ function displayLetter(tileIndex){
   }
 }
 
+// wrapper to create input text objects with designated styles
 function inputTexts (id, posX, posY) {
   let letterInput;
   letterInput = createInput();
@@ -199,6 +208,7 @@ function inputTexts (id, posX, posY) {
   return letterInput;
 }
 
+// wrapper to create input buttons objects with designated styles
 function inputButtons (text, posX, posY, width, height) {
   let button;
   button = createButton(text);
@@ -223,9 +233,7 @@ function inputButtons (text, posX, posY, width, height) {
   return button;
 }
 
-function onSubmit1() {
-  let desiredWord = getWordLetter();
-}
+// function to level up on successful completion of previous level
 function changeLevel(){
    if(enableNextLevel){
     currentLevel++;
@@ -238,6 +246,8 @@ function changeLevel(){
     setup();
   }
 }
+
+// FUNCTIONS to display sketches on each tile 
 
 function showSketch1(){
   directedRandomShapes(0);
