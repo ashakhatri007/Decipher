@@ -1,13 +1,21 @@
 let letter1, letter2, letter3, letter4, letter5,switchButton, checkButton, hintButton, startButton;
+
+//Level at which user is currently playing
 let currentLevel = 1;
+
+// Switch to regulate the enable next level button
 let enableNextLevel = false;
+
 let checkResult;
 let hint;
 let hintCount = 1;
-let hints = ['This is Hint 1', 'This is Hint 2'];
+
 let tileColors = ['#001523','#002137','#002945','#003356','#00406C'];
 //let tileColors = ['#023047','#126782','#219EbC','#58B4D1','#73BFDC'];
+
 let winSound, loseSound;
+
+// Switch to maintain the game start state
 let isGameStarted = false;
 
 function drawGrid(width, height) {
@@ -36,10 +44,12 @@ function drawGrid(width, height) {
   }
 }
 
+// Function to display sketch once mouse is pressed on any tile
 function mousePressed(){
     displaySketch();
 }
 
+// Initial set up function
 function setup(){
     createCanvas(800, 800);
     checkResult = '';
@@ -47,14 +57,17 @@ function setup(){
     getWordLetter();
     winSound = loadSound('WinSoundEffect.wav');
     loseSound = loadSound('LoseSoundEffect.wav');
-   if(isGameStarted == false){
-     setStartScreen()
-   }
-   else{
-     setMainPage();
-  }
+    
+    // Condition to make sure start screen is displayed only once when game starts
+    if(isGameStarted == false){
+      setStartScreen()
+    }
+    else{
+      setMainPage();
+    }
 }
 
+// Function to set up start screen with game instructions
 function setStartScreen(){
     gameBackground();
     filter(BLUR,2.5)
@@ -72,35 +85,51 @@ function setStartScreen(){
     textFont('BOOK ANTIQUA')
     text("1. Click on the tiles to find out what's behind them.", 20, 210,780);
     text("2. There might be something useful hidden in some of the tiles.", 20, 280,780);
-    text("3. Collect as many as you can by turning the tiles !", 20, 350,780);
+    text("3. Collect as many as you can by turning the tiles!", 20, 350,780);
     text("4. Combine all that you have to figure out the code word.", 20, 420,780);
-  text("5. You might also need a hint.", 20, 495,780);
-  text("6. Proceed to the next level once you decipher the code word !", 20, 570,780);
+    text("5. You might also need a hint.", 20, 495,780);
+    text("6. Proceed to the next level once you decipher the code word!", 20, 570,780);
       noStroke();
-  if(startButton == null){
-    startButton = inputButtons('PLAY !', 300, 670, '200px', '50px');
-    startButton.style('background-color', '#1E6091');
-  }
-  startButton.mouseClicked(setMainPage);
+
+    // Constructing the play button
+    if(startButton == null){
+      startButton = inputButtons('PLAY !', 300, 670, '200px', '50px');
+      startButton.style('background-color', '#1E6091');
+    }
+
+    // Setting up game main page once user clicks play button
+    startButton.mouseClicked(setMainPage);
 }
 
 function gameBackground () {
-  let shapeAlpha = 50; // For the opacity of the background
-  noStroke();
-  for (let i = 0; i < 1000; i++) {
-    shapeColor = color(random(255), random(255), random(255), shapeAlpha);
-	fill(shapeColor);
-    ellipse(random(windowWidth), random(windowHeight), random(100)); 
-  }
+    // For the opacity of the background
+    let shapeAlpha = 50; 
+    noStroke();
+    for (let i = 0; i < 1000; i++) {
+      shapeColor = color(random(255), random(255), random(255), shapeAlpha);
+    fill(shapeColor);
+      ellipse(random(windowWidth), random(windowHeight), random(100)); 
+    }
 }
 
+// Function to set up main page of game containing tiles
 function setMainPage() {
   clear();
+
+  // Removing the play button from previous screen
   startButton.remove();
+
+  // Setting game start state to true 
   isGameStarted = true;
+
+  // Setting up game background having bubbles
   gameBackground();
+
+  // Drwaing tiles using a grid
   drawGrid(650,500); 
-  
+
+  // Creating user interactable buttons and input fields only if they were not created before.
+  // If object are present then we just show them again on next level.
   if(letter1 == null)letter1 = inputTexts(1,280,600);
   else letter1.show();
   if(letter2 == null)letter2 = inputTexts(2,330,600);
@@ -112,38 +141,46 @@ function setMainPage() {
   if(letter5 == null)letter5 = inputTexts(5,480,600);
   else letter5.show();
 
-  // Start/Stop button code design
-  if(switchButton == null){
+  // Next level button code design
+  if(switchButton == null)
+  {
     switchButton = inputButtons('Go to Next LEVEL', 300, 720, '200px', '50px');
     switchButton.style('color', '#ffffff');
     switchButton.style('background-color', '#A0001C');
   }
-  else{ 
+  else
+  { 
     console.log("Current level is "+currentLevel);
-    switchButton.innerHTML = "Go to LEVEL "+currentLevel;
     switchButton.style('color', '#ffffff');
     switchButton.style('background-color', '#A0001C');
     switchButton.show();
-      }
+  }
   
   // Hint button code design
   if(hintButton == null) {
     hintButton = inputButtons('HELP ?', 160, 595);
     hintButton.style('background-color', '#1E6091');
   }
-  else hintButton.show();
+  else
+  { 
+    hintButton.show();
+  }
+  // Displaying hint on mouse click function
   hintButton.mouseClicked(onHintClicked);
   
-  // Check for correctness button code design
-  if(checkButton == null) {
+  // Check button code design
+  if(checkButton == null) 
+  {
     checkButton = inputButtons('CHECK', 550, 595);
     checkButton.style('background-color', '#1E6091');
   }
-  else checkButton.show();
+  else{
+    checkButton.show();
+  }
+
+  // Attaching respective functions on mouse click events of buttons
   checkButton.mouseClicked(onSubmit); 
   switchButton.mouseClicked(changeLevel);
-
-  displayHintText();
 }
 
 function onHintClicked() {
@@ -153,6 +190,7 @@ function onHintClicked() {
   displayHintText();
 }
 
+// Creating a div and displaying the check or hint text on respective button click
 function displayHintText(text){
   if(hint != null){
     hint.remove();
