@@ -89,82 +89,84 @@ function getRandomIndexes(quantity,max){
 
 // Map tiles to enable mouse click and display sketch behind it
 function displaySketch(){
-
-  // The constant numbers are the co-ordinates of tiles based on game canvas size
-  if(120<=mouseX && mouseX<=220 && 30<=mouseY && mouseY<=130){
-    showSketch1();
-  }
-  if(120<=mouseX && mouseY>=140 && 220>=mouseX && mouseY<=240){
-    showSketch2();
-  }
-  if(120<=mouseX && mouseY>=250 && 220>=mouseX && mouseY<=350){
-    showSketch3();
-  }
-   if(120<=mouseX && mouseY>=360 && 220>=mouseX && mouseY<=460){
-    showSketch4();
-  }
-  if(120<=mouseX && mouseY>=470 && 220>=mouseX && mouseY<=570){
-    showSketch5();
-  }
-   if(230<=mouseX && mouseY>=30 && 330>=mouseX && mouseY<=130){
-    showSketch6();
-  }
-   if(230<=mouseX && mouseY>=140 && 330>=mouseX && mouseY<=240){
-    showSketch7();
-  }
-   if(230<=mouseX && mouseY>=250 && 330>=mouseX && mouseY<=350){
-    showSketch8();
-  }
-   if(230<=mouseX && mouseY>=360 && 330>=mouseX && mouseY<=460){
-    showSketch9();
-  }
-  if(230<=mouseX && mouseY>=470 && 330>=mouseX && mouseY<=570){
-    showSketch10();
-  }
-  if(340<=mouseX && mouseY>=30 && 440>=mouseX && mouseY<=130){
-    showSketch11();
-  }
-  if(340<=mouseX && mouseY>=140 && 440>=mouseX && mouseY<=240){
-    showSketch12();
-  }
-  if(340<=mouseX && mouseY>=250 && 440>=mouseX && mouseY<=350){
-    showSketch13();
-  }
-   if(340<=mouseX && mouseY>=360 && 440>=mouseX && mouseY<=460){
-    showSketch14();
-  }
-   if(340<=mouseX && mouseY>=470 && 440>=mouseX && mouseY<=570){
-    showSketch15();
-  }
-    if(450<=mouseX && mouseY>=30 && 550>=mouseX && mouseY<=130){
-    showSketch16();
-  }
-    if(450<=mouseX && mouseY>=140 && 550>=mouseX && mouseY<=240){
-    showSketch17();
-  }
-    if(450<=mouseX && mouseY>=250 && 550>=mouseX && mouseY<=350){
-    showSketch18();
-  }
-   if(450<=mouseX && mouseY>=360 && 550>=mouseX && mouseY<=460){
-    showSketch19();
-  }
-  if(450<=mouseX && mouseY>=470 && 550>=mouseX && mouseY<=570){
-    showSketch20();
-  }
-   if(560<=mouseX && mouseY>=30 && 660>=mouseX && mouseY<=130){
-    showSketch21();
-  }
-  if(560<=mouseX && mouseY>=140 && 660>=mouseX && mouseY<=240){
-    showSketch22();
-  }
-  if(560<=mouseX && mouseY>=250 && 660>=mouseX && mouseY<=350){
-    showSketch23();
-  }
-   if(560<=mouseX && mouseY>=360 && 660>=mouseX && mouseY<=460){
-    showSketch24();
-  }
-   if(560<=mouseX && mouseY>=470 && 660>=mouseX && mouseY<=570){
-    showSketch25();
+  if(isGameStarted)
+  {
+    // The constant numbers are the co-ordinates of tiles based on game canvas size
+    if(120<=mouseX && mouseX<=220 && 30<=mouseY && mouseY<=130){
+      showSketch1();
+    }
+    if(120<=mouseX && mouseY>=140 && 220>=mouseX && mouseY<=240){
+      showSketch2();
+    }
+    if(120<=mouseX && mouseY>=250 && 220>=mouseX && mouseY<=350){
+      showSketch3();
+    }
+    if(120<=mouseX && mouseY>=360 && 220>=mouseX && mouseY<=460){
+      showSketch4();
+    }
+    if(120<=mouseX && mouseY>=470 && 220>=mouseX && mouseY<=570){
+      showSketch5();
+    }
+    if(230<=mouseX && mouseY>=30 && 330>=mouseX && mouseY<=130){
+      showSketch6();
+    }
+    if(230<=mouseX && mouseY>=140 && 330>=mouseX && mouseY<=240){
+      showSketch7();
+    }
+    if(230<=mouseX && mouseY>=250 && 330>=mouseX && mouseY<=350){
+      showSketch8();
+    }
+    if(230<=mouseX && mouseY>=360 && 330>=mouseX && mouseY<=460){
+      showSketch9();
+    }
+    if(230<=mouseX && mouseY>=470 && 330>=mouseX && mouseY<=570){
+      showSketch10();
+    }
+    if(340<=mouseX && mouseY>=30 && 440>=mouseX && mouseY<=130){
+      showSketch11();
+    }
+    if(340<=mouseX && mouseY>=140 && 440>=mouseX && mouseY<=240){
+      showSketch12();
+    }
+    if(340<=mouseX && mouseY>=250 && 440>=mouseX && mouseY<=350){
+      showSketch13();
+    }
+    if(340<=mouseX && mouseY>=360 && 440>=mouseX && mouseY<=460){
+      showSketch14();
+    }
+    if(340<=mouseX && mouseY>=470 && 440>=mouseX && mouseY<=570){
+      showSketch15();
+    }
+      if(450<=mouseX && mouseY>=30 && 550>=mouseX && mouseY<=130){
+      showSketch16();
+    }
+      if(450<=mouseX && mouseY>=140 && 550>=mouseX && mouseY<=240){
+      showSketch17();
+    }
+      if(450<=mouseX && mouseY>=250 && 550>=mouseX && mouseY<=350){
+      showSketch18();
+    }
+    if(450<=mouseX && mouseY>=360 && 550>=mouseX && mouseY<=460){
+      showSketch19();
+    }
+    if(450<=mouseX && mouseY>=470 && 550>=mouseX && mouseY<=570){
+      showSketch20();
+    }
+    if(560<=mouseX && mouseY>=30 && 660>=mouseX && mouseY<=130){
+      showSketch21();
+    }
+    if(560<=mouseX && mouseY>=140 && 660>=mouseX && mouseY<=240){
+      showSketch22();
+    }
+    if(560<=mouseX && mouseY>=250 && 660>=mouseX && mouseY<=350){
+      showSketch23();
+    }
+    if(560<=mouseX && mouseY>=360 && 660>=mouseX && mouseY<=460){
+      showSketch24();
+    }
+    if(560<=mouseX && mouseY>=470 && 660>=mouseX && mouseY<=570){
+      showSketch25();
+    }
   }
 }
 
