@@ -33,7 +33,7 @@ let directedRandomShapes = function (index) {
             }
             else if(shapeIndex == 3)
             {  
-              rotate(arcAngle);
+              //rotate(arcAngle);
               fill(random(50,255),random(70,170),random(100,200),random(70,150));
               arc(shapeX, shapeY, random(shapeY/20,shapeY/10), random(shapeY/20,shapeY/10), PI, TWO_PI);
               arcAngle+=1;
