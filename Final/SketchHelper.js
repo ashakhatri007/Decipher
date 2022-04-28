@@ -268,6 +268,9 @@ function changeLevel(){
     letter3.value('');
     letter4.value('');
     letter5.value('');
+    if(hint != null){
+      hint.hide();
+    }
     changeLetterBoxColorToRed();
     setup();
   }
