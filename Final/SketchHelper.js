@@ -1,3 +1,4 @@
+// reference to hold dictionary object
 let dict = new WordDictionary();
 let tileLetter = [];
 let word, exitButton,index;
