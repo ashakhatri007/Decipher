@@ -1,17 +1,27 @@
 // reference to hold dictionary object
 let dict = new WordDictionary();
+
+// Array to hold letters associated with tiles
 let tileLetter = [];
-let word, exitButton,index;
+
+// word is the current level code word
+let word, exitButton;
 let letterIndex = -1;
+
+// Array to track if tile is opened before or not for current level
 let tileOpen = [];
+
+// Array to store 5 random indexes for tiles displaying letters
 let randomTileIndexes = [];
 
-
+// Generate a word for current level from word dictionary
 function getWordLetter(){
   word = dict.generateWord();
   console.log("Word is -- "+word); 
   fillTiles();
 }
+
+// Generate hint text associated with word in dictionary
 function getHintText(){
   return dict.generateHint();
 }
@@ -36,6 +46,7 @@ function onSubmit() {
   }
 }
 
+// Changing the input box border color to red for every new level
 function changeLetterBoxColorToRed(){
     letter1.style('border', '3px solid #A0001C');
     letter2.style('border', '3px solid #A0001C');
@@ -44,6 +55,8 @@ function changeLetterBoxColorToRed(){
     letter5.style('border', '3px solid #A0001C');
 }
 
+// Populate tiles array with initial values and generate random tile numbers
+// to hide letters behind them
 function fillTiles(){
   for(let i=0;i<25;i++){
     tileLetter[i] = '';
@@ -62,8 +75,9 @@ function fillTiles(){
   tileLetter[n5] = word.charAt(4);
   console.log(n1+" "+n2+" "+n3+" "+n4+" "+n5);
 }
-// Adapted from https://mavtipi.medium.com/how-to-generate-unique-random-numbers-in-a-specified-range-in-javascript-80bf1a545ae7
 
+// Adapted from https://mavtipi.medium.com/how-to-generate-unique-random-numbers-in-a-specified-range-in-javascript-80bf1a545ae7
+// Generate unique 5 random indexes
 function getRandomIndexes(quantity,max){
    while(randomTileIndexes.length < quantity){
     var candidateInt = Math.floor(Math.random() * max) + 1
@@ -71,7 +85,11 @@ function getRandomIndexes(quantity,max){
         randomTileIndexes.push(candidateInt)
   }
 }
+
+// Map tiles to enable mouse click and display sketch behind it
 function displaySketch(){
+
+  // The constant numbers are the co-ordinates of tiles based on game canvas size
   if(120<=mouseX && mouseX<=220 && 30<=mouseY && mouseY<=130){
     showSketch1();
   }
@@ -148,15 +166,22 @@ function displaySketch(){
     showSketch25();
   }
 }
+
+// Function to exit from sketch page to game main page
 function exitToMainPage(){
     exitButton.hide();
     setMainPage();
 }
 
+// Function to show letter once sketch is displayed
 function displayLetter(tileIndex){
+
+  // Marking current tile as visited if not marked before
   if(tileOpen[tileIndex] == false){
     tileOpen[tileIndex] = true;
   }
+
+  // Hiding buttons and input fields from main page once sketch is opened
   letter1.hide();
   letter2.hide();
   letter3.hide();
@@ -166,14 +191,20 @@ function displayLetter(tileIndex){
   hintButton.hide();
   checkButton.hide();
   hint.hide();
-  if(exitButton == null){
+
+  // Creating exit button to exit to main page and configuring the mouse click on it
+  if(exitButton == null)
+  {
     exitButton = inputButtons('EXIT', 20, 725);
     exitButton.style('background-color', '#1E6091');
   }
-  else exitButton.show();
+  else 
+  {
+    exitButton.show();
+  }
   exitButton.mouseClicked(exitToMainPage);
   
-  // background(194,255,255);
+  // If tile should display letter then display it
   if(tileLetter[tileIndex] != '')
   {
       textSize(75);
@@ -223,9 +254,7 @@ function inputButtons (text, posX, posY, width, height) {
   return button;
 }
 
-function onSubmit1() {
-  let desiredWord = getWordLetter();
-}
+// Change level and setup game state again
 function changeLevel(){
    if(enableNextLevel){
     currentLevel++;
