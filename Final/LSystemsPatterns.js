@@ -197,11 +197,12 @@ let patternSystems = function (index) {
   }
 
   let system = curve1;
-  
+  //system stores the L-system that will be chosen randomly from the set of given systems
   //all the curves are stored in an array from which a curve will be selected   randomly 
   let graphs = [curve1,curve2,curve3,curve4,curve5,curve6,curve7,curve8,curve9,curve10,curve11,curve12,curve13,curve14,curve15,curve16,curve17];
 
   //this function calls the turtle function that will generate the pattern
+  //pos here is just used as an variable to iterate through the extended string
   function drawPattern () {
     while(pos <= str1.length){
       turtle(str1[pos]);
@@ -254,9 +255,11 @@ let patternSystems = function (index) {
   //this is the function that actually generates the pattern (like a turtle)
   function turtle(c){
     if(c == 'F' || c == 'G' || c=='A' || c=='C'){
+      //x1,y1 store the co-ordinates of the second point of a line which are calculated using the angle specified for each and every curve
       let x1 = x + system.step*cos(radians(angle));
       let y1 = y + system.step*sin(radians(angle));
       strokeWeight(random(0,5));
+      //r,g,b determine the color values for the pattern to be generated
       r = random(128, 255);
       g = random(0, 192);
       b = random(0, 50);

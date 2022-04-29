@@ -5,7 +5,7 @@ let dict = new WordDictionary();
 let tileLetter = [];
 
 // word is the current level code word
-let word, exitButton;
+let word, exitButton, index;
 let letterIndex = -1;
 
 // Array to track if tile is opened before or not for current level
@@ -27,9 +27,11 @@ function getHintText(){
 }
 
 // function to check the correctness of the entered word, when player submits their response
-function onSubmit() {  
+function onSubmit() { 
+  // inputWord variable stores the word entered by the user
   let inputWord = letter1.value() + letter2.value() + letter3.value() + letter4.value() + letter5.value();
   
+  // check to see if the inputted word matches the desired word
   if (word.toLowerCase() === inputWord.toLowerCase()) {
     winSound.play(); // play the winning sound if the words match
     displayHintText('That\'s Correct! Great Job!');
@@ -193,7 +195,8 @@ function displayLetter(tileIndex){
   switchButton.hide();
   hintButton.hide();
   checkButton.hide();
-  hint.hide();
+  if(hint != null)
+    hint.hide();
 
   // Creating exit button to exit to main page and configuring the mouse click on it
   if(exitButton == null)
