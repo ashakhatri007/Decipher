@@ -132,13 +132,13 @@ function setMainPage() {
 
   // Creating user interactable buttons and input fields only if they were not created before.
   // If object are present then we just show them again on next level.
-  if(letter1 == null)letter1 = inputTexts(1,280,600);
+  if(letter1 == null)letter1 = inputTexts(1,260,600);
   else letter1.show();
-  if(letter2 == null)letter2 = inputTexts(2,330,600);
+  if(letter2 == null)letter2 = inputTexts(2,315,600);
   else letter2.show();
-  if(letter3 == null)letter3 = inputTexts(3,380,600);
+  if(letter3 == null)letter3 = inputTexts(3,370,600);
   else letter3.show();
-  if(letter4 == null)letter4 = inputTexts(4,430,600);
+  if(letter4 == null)letter4 = inputTexts(4,425,600);
   else letter4.show();
   if(letter5 == null)letter5 = inputTexts(5,480,600);
   else letter5.show();
@@ -146,7 +146,7 @@ function setMainPage() {
   // Next level button code design
   if(switchButton == null)
   {
-    switchButton = inputButtons('Go to Next LEVEL', 300, 720, '200px', '50px');
+    switchButton = inputButtons('Go to Next LEVEL', 295, 720, '200px', '50px');
     switchButton.style('color', '#ffffff');
     switchButton.style('background-color', '#A0001C');
   }
@@ -160,7 +160,7 @@ function setMainPage() {
   
   // Hint button code design
   if(hintButton == null) {
-    hintButton = inputButtons('HELP ?', 160, 595);
+    hintButton = inputButtons('HELP ?', 130, 595);
     hintButton.style('background-color', '#1E6091');
   }
   else
