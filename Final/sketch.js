@@ -50,28 +50,28 @@ function mousePressed(){
     displaySketch();
 }
 
-// Initial set up function
+// Initial set up function that initializes all the required variables
 function setup(){
     createCanvas(800, 800);
-    checkResult = '';
-    enableNextLevel = false;
-    getWordLetter();
-    winSound = loadSound('WinSoundEffect.wav');
-    loseSound = loadSound('LoseSoundEffect.wav');
+    checkResult = '';  // initially no result present
+    enableNextLevel = false; // initially next level is disabled
+    getWordLetter(); // get the word to be hidden behind the tiles
+    winSound = loadSound('WinSoundEffect.wav'); // winning sound effect
+    loseSound = loadSound('LoseSoundEffect.wav'); //losing sound effect
     
     // Condition to make sure start screen is displayed only once when game starts
     if(isGameStarted == false){
-      setStartScreen()
+      setStartScreen(); // display game description screem
     }
     else{
-      setMainPage();
+      setMainPage(); // display game screen
     }
 }
 
 // Function to set up start screen with game instructions
 function setStartScreen(){
-    gameBackground();
-    filter(BLUR,2.5)
+    gameBackground(); // setup the game background
+    filter(BLUR,2.5);
     textSize(55);
     textAlign(CENTER,CENTER);
     fill('#000000');

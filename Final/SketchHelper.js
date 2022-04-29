@@ -5,7 +5,7 @@ let dict = new WordDictionary();
 let tileLetter = [];
 
 // word is the current level code word
-let word, exitButton;
+let word, exitButton, index;
 let letterIndex = -1;
 
 // Array to track if tile is opened before or not for current level
@@ -27,9 +27,11 @@ function getHintText(){
 }
 
 // function to check the correctness of the entered word, when player submits their response
-function onSubmit() {  
+function onSubmit() { 
+  // inputWord variable stores the word entered by the user
   let inputWord = letter1.value() + letter2.value() + letter3.value() + letter4.value() + letter5.value();
   
+  // check to see if the inputted word matches the desired word
   if (word.toLowerCase() === inputWord.toLowerCase()) {
     winSound.play(); // play the winning sound if the words match
     displayHintText('That\'s Correct! Great Job!');
@@ -89,82 +91,84 @@ function getRandomIndexes(quantity,max){
 
 // Map tiles to enable mouse click and display sketch behind it
 function displaySketch(){
-
-  // The constant numbers are the co-ordinates of tiles based on game canvas size
-  if(120<=mouseX && mouseX<=220 && 30<=mouseY && mouseY<=130){
-    showSketch1();
-  }
-  if(120<=mouseX && mouseY>=140 && 220>=mouseX && mouseY<=240){
-    showSketch2();
-  }
-  if(120<=mouseX && mouseY>=250 && 220>=mouseX && mouseY<=350){
-    showSketch3();
-  }
-   if(120<=mouseX && mouseY>=360 && 220>=mouseX && mouseY<=460){
-    showSketch4();
-  }
-  if(120<=mouseX && mouseY>=470 && 220>=mouseX && mouseY<=570){
-    showSketch5();
-  }
-   if(230<=mouseX && mouseY>=30 && 330>=mouseX && mouseY<=130){
-    showSketch6();
-  }
-   if(230<=mouseX && mouseY>=140 && 330>=mouseX && mouseY<=240){
-    showSketch7();
-  }
-   if(230<=mouseX && mouseY>=250 && 330>=mouseX && mouseY<=350){
-    showSketch8();
-  }
-   if(230<=mouseX && mouseY>=360 && 330>=mouseX && mouseY<=460){
-    showSketch9();
-  }
-  if(230<=mouseX && mouseY>=470 && 330>=mouseX && mouseY<=570){
-    showSketch10();
-  }
-  if(340<=mouseX && mouseY>=30 && 440>=mouseX && mouseY<=130){
-    showSketch11();
-  }
-  if(340<=mouseX && mouseY>=140 && 440>=mouseX && mouseY<=240){
-    showSketch12();
-  }
-  if(340<=mouseX && mouseY>=250 && 440>=mouseX && mouseY<=350){
-    showSketch13();
-  }
-   if(340<=mouseX && mouseY>=360 && 440>=mouseX && mouseY<=460){
-    showSketch14();
-  }
-   if(340<=mouseX && mouseY>=470 && 440>=mouseX && mouseY<=570){
-    showSketch15();
-  }
-    if(450<=mouseX && mouseY>=30 && 550>=mouseX && mouseY<=130){
-    showSketch16();
-  }
-    if(450<=mouseX && mouseY>=140 && 550>=mouseX && mouseY<=240){
-    showSketch17();
-  }
-    if(450<=mouseX && mouseY>=250 && 550>=mouseX && mouseY<=350){
-    showSketch18();
-  }
-   if(450<=mouseX && mouseY>=360 && 550>=mouseX && mouseY<=460){
-    showSketch19();
-  }
-  if(450<=mouseX && mouseY>=470 && 550>=mouseX && mouseY<=570){
-    showSketch20();
-  }
-   if(560<=mouseX && mouseY>=30 && 660>=mouseX && mouseY<=130){
-    showSketch21();
-  }
-  if(560<=mouseX && mouseY>=140 && 660>=mouseX && mouseY<=240){
-    showSketch22();
-  }
-  if(560<=mouseX && mouseY>=250 && 660>=mouseX && mouseY<=350){
-    showSketch23();
-  }
-   if(560<=mouseX && mouseY>=360 && 660>=mouseX && mouseY<=460){
-    showSketch24();
-  }
-   if(560<=mouseX && mouseY>=470 && 660>=mouseX && mouseY<=570){
-    showSketch25();
+  if(isGameStarted)
+  {
+    // The constant numbers are the co-ordinates of tiles based on game canvas size
+    if(120<=mouseX && mouseX<=220 && 30<=mouseY && mouseY<=130){
+      showSketch1();
+    }
+    if(120<=mouseX && mouseY>=140 && 220>=mouseX && mouseY<=240){
+      showSketch2();
+    }
+    if(120<=mouseX && mouseY>=250 && 220>=mouseX && mouseY<=350){
+      showSketch3();
+    }
+    if(120<=mouseX && mouseY>=360 && 220>=mouseX && mouseY<=460){
+      showSketch4();
+    }
+    if(120<=mouseX && mouseY>=470 && 220>=mouseX && mouseY<=570){
+      showSketch5();
+    }
+    if(230<=mouseX && mouseY>=30 && 330>=mouseX && mouseY<=130){
+      showSketch6();
+    }
+    if(230<=mouseX && mouseY>=140 && 330>=mouseX && mouseY<=240){
+      showSketch7();
+    }
+    if(230<=mouseX && mouseY>=250 && 330>=mouseX && mouseY<=350){
+      showSketch8();
+    }
+    if(230<=mouseX && mouseY>=360 && 330>=mouseX && mouseY<=460){
+      showSketch9();
+    }
+    if(230<=mouseX && mouseY>=470 && 330>=mouseX && mouseY<=570){
+      showSketch10();
+    }
+    if(340<=mouseX && mouseY>=30 && 440>=mouseX && mouseY<=130){
+      showSketch11();
+    }
+    if(340<=mouseX && mouseY>=140 && 440>=mouseX && mouseY<=240){
+      showSketch12();
+    }
+    if(340<=mouseX && mouseY>=250 && 440>=mouseX && mouseY<=350){
+      showSketch13();
+    }
+    if(340<=mouseX && mouseY>=360 && 440>=mouseX && mouseY<=460){
+      showSketch14();
+    }
+    if(340<=mouseX && mouseY>=470 && 440>=mouseX && mouseY<=570){
+      showSketch15();
+    }
+      if(450<=mouseX && mouseY>=30 && 550>=mouseX && mouseY<=130){
+      showSketch16();
+    }
+      if(450<=mouseX && mouseY>=140 && 550>=mouseX && mouseY<=240){
+      showSketch17();
+    }
+      if(450<=mouseX && mouseY>=250 && 550>=mouseX && mouseY<=350){
+      showSketch18();
+    }
+    if(450<=mouseX && mouseY>=360 && 550>=mouseX && mouseY<=460){
+      showSketch19();
+    }
+    if(450<=mouseX && mouseY>=470 && 550>=mouseX && mouseY<=570){
+      showSketch20();
+    }
+    if(560<=mouseX && mouseY>=30 && 660>=mouseX && mouseY<=130){
+      showSketch21();
+    }
+    if(560<=mouseX && mouseY>=140 && 660>=mouseX && mouseY<=240){
+      showSketch22();
+    }
+    if(560<=mouseX && mouseY>=250 && 660>=mouseX && mouseY<=350){
+      showSketch23();
+    }
+    if(560<=mouseX && mouseY>=360 && 660>=mouseX && mouseY<=460){
+      showSketch24();
+    }
+    if(560<=mouseX && mouseY>=470 && 660>=mouseX && mouseY<=570){
+      showSketch25();
+    }
   }
 }
 
@@ -191,7 +195,8 @@ function displayLetter(tileIndex){
   switchButton.hide();
   hintButton.hide();
   checkButton.hide();
-  hint.hide();
+  if(hint != null)
+    hint.hide();
 
   // Creating exit button to exit to main page and configuring the mouse click on it
   if(exitButton == null)
@@ -266,6 +271,9 @@ function changeLevel(){
     letter3.value('');
     letter4.value('');
     letter5.value('');
+    if(hint != null){
+      hint.hide();
+    }
     changeLetterBoxColorToRed();
     setup();
   }

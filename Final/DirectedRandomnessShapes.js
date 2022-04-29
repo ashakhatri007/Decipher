@@ -1,9 +1,11 @@
 let directedRandomShapes = function (index) {
+  //Initial co-ordinates of the shapes are stored in the following variables
   let shapeY=0;
   let shapeX=0;
   let arcAngle=0;
   //the shpaes are mapped to integers and stored in an array
   let shapeValues=[0,1,2,3,4,5]
+  //This variable is used to store the value of the shape chosen randomly
   let shapeIndex=0;
 
   function directedRandomShapesSetup() {
@@ -14,6 +16,7 @@ let directedRandomShapes = function (index) {
     //shapes will be generated at random locations with random sizes but proportional to the shapeY-axis co-ordinates of the shapes
     for(let j=0; j<500; j+=1)
     {
+        //The shapes are geenrated at random locations all across the canvas
         shapeX=random() * 800;
         shapeY=random() * 800;
             if(shapeIndex == 0)
@@ -33,7 +36,7 @@ let directedRandomShapes = function (index) {
             }
             else if(shapeIndex == 3)
             {  
-              rotate(arcAngle);
+              //rotate(arcAngle);
               fill(random(50,255),random(70,170),random(100,200),random(70,150));
               arc(shapeX, shapeY, random(shapeY/20,shapeY/10), random(shapeY/20,shapeY/10), PI, TWO_PI);
               arcAngle+=1;

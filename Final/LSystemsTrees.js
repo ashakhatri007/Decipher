@@ -127,6 +127,7 @@ let treeSystems = function (index) {
   }
 
   let system = curve9;
+  //system stores the L-system that will be chosen randomly from the set of given systems
   //all the curves are stored in an array from which a curve will be selected   randomly 
   let graphs = [curve1,curve2,curve3,curve4,curve5,curve6,curve7,curve8,curve9,curve10];
 
@@ -135,6 +136,7 @@ let treeSystems = function (index) {
         system= random(graphs);
         createCanvas(800,800);
         background(245, 240, 240,220);
+    //treeX, treeY store the initial co-ordinates of the chosen tree
         treeX = system.X;
         treeY = system.Y;
         treeAngle = -90;
@@ -148,6 +150,7 @@ let treeSystems = function (index) {
         displayLetter(index);
   }
   //this function calls the turtle function that will generate the pattern
+  //pos here is just used as an variable to iterate through the extended string
   function drawTree() {
     while (treePos <= treeString.length){
       turtle(treeString[treePos]);
@@ -186,7 +189,9 @@ let treeSystems = function (index) {
     if(c == 'F' || c == 'G' || c=='A' || c=='C'){
       let x1 = treeX + system.step*cos(radians(treeAngle));
       let y1 = treeY + system.step*sin(radians(treeAngle));
+       //x1,y1 store the co-ordinates of the second point of a line which are calculated using the angle specified for each and every curve
       strokeWeight(random(0,5));
+       //treeR,treeG,treeB determine the color values for the tree to be generated
       treeR = random(50, 200);
       treeG = random(100, 255);
       treeB = random(150, 200);
@@ -201,13 +206,15 @@ let treeSystems = function (index) {
     else if(c == "-"){
       treeAngle -= system.angle;
     }
-    //A stach is used in this code to store the state of the turtle if the grammar has a '['
+    //A stack is used in this code to store the state of the turtle if the grammar has a '['
     //the variables associated with the stored state are popped when the grammar has a ']'
     else if(c == "["){
       push();
       treeStack.push({treeX:treeX,treeY:treeY,angle:treeAngle})
     }
     else if(c == "]"){
+      //the variables in the stacked are popped in a temporary variable
+      //and then these are mapped to the variables used to generate the tree
       let tempVariable=treeStack.pop();
       treeX=tempVariable.treeX;
       treeY=tempVariable.treeY;
